@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.multiapptest.R;
 import com.example.multiapptest.data.MovieItem;
+import com.example.multiapptest.util.ImageLoader;
 
 import java.util.List;
 
@@ -33,9 +34,9 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Mo
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         MovieItem movie = movies.get(position);
-        holder.title.setText(movie.getOriginalTitle());
+        holder.title.setText(movie.getTitle());
         holder.vote.setText(String.valueOf(movie.getVoteAverage()));
-        // holder.poster.setImageURI();
+        ImageLoader.loadImage(movie.getPosterPath(), holder.posterImage);
     }
 
     @Override
@@ -43,15 +44,19 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Mo
         return movies.size();
     }
 
+    public void setMovies(List<MovieItem> movies) {
+        this.movies = movies;
+    }
+
     static class MovieViewHolder extends RecyclerView.ViewHolder {
-        ImageView poster;
+        ImageView posterImage;
         TextView title, vote;
 
         public MovieViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.movie_title);
             vote = itemView.findViewById(R.id.vote);
-            poster = itemView.findViewById(R.id.poster);
+            posterImage = itemView.findViewById(R.id.poster);
         }
     }
 }

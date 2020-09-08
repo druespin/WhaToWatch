@@ -1,13 +1,12 @@
 package com.example.multiapptest.data;
 
-
 import com.google.gson.annotations.SerializedName;
 
-public class MovieItem {
+class TvItem {
 
     int id;
     double popularity;
-    String title;
+    String name;
     String overview;
 
     @SerializedName("release_date")
@@ -16,8 +15,8 @@ public class MovieItem {
     @SerializedName("original_language")
     String originalLanguage;
 
-    @SerializedName("original_title")
-    String originalTitle;
+    @SerializedName("original_name")
+    String originalName;
 
     @SerializedName("poster_path")
     String posterPath;
@@ -30,10 +29,10 @@ public class MovieItem {
         return id;
     }
 
-    public String getTitle() { return title; }
+    public String getTitle() { return name; }
 
     public String getOriginalTitle() {
-        return originalTitle;
+        return originalName;
     }
 
     public String getPosterPath() {
